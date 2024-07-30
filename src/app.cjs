@@ -1,6 +1,7 @@
 const express = require("express");
 const router = require("./router.cjs");
-const notFoundMiddleware = require("./middleware/not-found.cjs");
+
+const { notFoundMiddleware } = require("./middleware/index.cjs");
 
 const app = express();
 

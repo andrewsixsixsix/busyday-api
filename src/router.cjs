@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const authMiddleware = require("./middleware/auth.cjs");
+
+const { authMiddleware } = require("./middleware/index.cjs");
 
 router.use(authMiddleware);
 router.route("/todos").get(getAll).post(create).put(update);
