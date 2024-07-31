@@ -1,0 +1,1 @@
+cat tables.sql | sqlite3 busyday.db && cat users.sql | sqlite3 busyday.db
