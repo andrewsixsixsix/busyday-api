@@ -7,6 +7,7 @@ CREATE TABLE users (
   username VARCHAR(32) NOT NULL,
   email VARCHAR(64) NOT NULL,
   name VARCHAR(32) DEFAULT NULL,
+  password VARCHAR(64) NOT NULL,
   avatar BLOB DEFAULT NULL
 );
 

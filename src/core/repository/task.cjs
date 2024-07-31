@@ -1,5 +1,10 @@
 const db = require("../../db.cjs");
+const { Task, TaskCreation, UpdatedTask } = require("../../typedef/task.cjs");
 
+/**
+ * @param {TaskCreation} task
+ * @returns {number} ID of created task
+ */
 const create = (task) => {
   const query = `
     INSERT INTO tasks
@@ -20,22 +25,38 @@ const create = (task) => {
   return lastInsertRowid;
 };
 
+/**
+ * @param {number} id
+ * @returns {number} Number of affected rows
+ */
 const _delete = (id) => {
   const query = "DELETE FROM tasks WHERE id = ?;";
   const { changes } = db.prepare(query).run(id);
   return changes;
 };
 
+/**
+ * @param {number} userId
+ * @returns {Task[]}
+ */
 const findAllByUserId = (userId) => {
   const query = "SELECT * FROM tasks WHERE userId = ?;";
   return db.prepare(query).all(userId);
 };
 
+/**
+ * @param {number} id
+ * @returns {Task}
+ */
 const findById = (id) => {
   const query = "SELECT * FROM tasks WHERE id = ?;";
   return db.prepare(query).get(id);
 };
 
+/**
+ * @param {UpdatedTask} task
+ * @returns {number} Number of affected rows
+ */
 const update = (task) => {
   const query = `
     UPDATE
