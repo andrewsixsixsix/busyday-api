@@ -1,30 +1,14 @@
 const { taskRepository } = require("../repository/index.cjs");
 
-const createTask = (task) => {
-  const id = taskRepository.create(task);
-  console.log(id);
-};
+const createTask = (task) => taskRepository.create(task);
 
-const deleteTask = (taskId) => {
-  const deleted = taskRepository.delete(taskId);
-  console.log(deleted);
-};
+const deleteTask = (taskId) => taskRepository.delete(taskId);
 
-const findAllTasksByUserId = (userId) => {
-  const tasks = taskRepository.findAllByUserId(userId);
-  console.log(tasks);
-};
+const findAllTasksByUserId = (userId) => taskRepository.findAllByUserId(userId);
 
-const findTaskById = (taskId) => {
-  const task = taskRepository.findById(taskId);
-  // TODO: throw 404 if task is undefined
-  console.log(task);
-};
+const findTaskById = (taskId) => taskRepository.findById(taskId);
 
-const updateTask = (task) => {
-  const updated = taskRepository.update(task);
-  console.log(updated);
-};
+const updateTask = (task) => taskRepository.update(task);
 
 const taskService = {
   create: createTask,
