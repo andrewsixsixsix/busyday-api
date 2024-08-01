@@ -19,9 +19,16 @@ const deleteUser = (id) => userRepository.delete(id);
 
 /**
  * @param {number} id
- * @returns {User}
+ * @returns {User=}
  */
 const findUserById = (id) => userRepository.findById(id);
+
+/**
+ * @param {string} username
+ * @returns {User=}
+ */
+const findUserByUsername = (username) =>
+  userRepository.findByUsername(username);
 
 /**
  * @param {UpdatedUser} user
@@ -33,6 +40,7 @@ const userService = {
   create: createUser,
   delete: deleteUser,
   findById: findUserById,
+  findByUsername: findUserByUsername,
   update: updateUser,
 };
 

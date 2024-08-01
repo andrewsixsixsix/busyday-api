@@ -50,7 +50,7 @@ const findAllByUserId = (userId) => {
 
 /**
  * @param {number} id
- * @returns {Task}
+ * @returns {Task=}
  */
 const findById = (id) => {
   const query = "SELECT * FROM tasks WHERE id = ?;";

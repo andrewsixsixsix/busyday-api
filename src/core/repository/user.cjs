@@ -34,11 +34,20 @@ const _delete = (id) => {
 
 /**
  * @param {number} id
- * @returns {User}
+ * @returns {User=}
  */
 const findById = (id) => {
   const query = "SELECT * FROM users WHERE id = ?;";
   return db.prepare(query).get(id);
+};
+
+/**
+ * @param {string} username
+ * @returns {User=}
+ */
+const findByUsername = (username) => {
+  const query = "SELECT * FROM users WHERE username = ?;";
+  return db.prepare(query).get(username);
 };
 
 /**
@@ -67,5 +76,6 @@ module.exports = {
   create,
   delete: _delete,
   findById,
+  findByUsername,
   update,
 };

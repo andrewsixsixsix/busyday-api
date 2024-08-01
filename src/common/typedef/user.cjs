@@ -5,6 +5,16 @@
  * @property {string} email
  * @property {string} name
  * @property {string} password
+ * @property {string} createdDate
+ * @property {?Buffer} avatar
+ */
+
+/**
+ * @typedef {Object} AppUser
+ * @property {number} id
+ * @property {string} username
+ * @property {string} email
+ * @property {string} name
  * @property {?Buffer} avatar
  */
 
