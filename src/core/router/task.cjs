@@ -5,8 +5,13 @@ const { authMiddleware } = require("../../middleware/index.cjs");
 const { taskService } = require("../service/index.cjs");
 
 router.use(authMiddleware);
-router.route("/tasks").get(getAll).post(create).put(update);
-router.route("/tasks/:id([0-9]+)").get(getById).delete(deleteById);
+
+router
+  .route("/tasks/:id([0-9]+)?")
+  .get(get)
+  .post(create)
+  .put(update)
+  .delete(deleteById);
 
 function create(req, res, _) {
   const task = req.body;
@@ -18,6 +23,10 @@ function deleteById(req, res, _) {
   const taskId = req.params.id;
   taskService.delete(taskId);
   res.end();
+}
+
+function get(req, res, next) {
+  req.params.id ? getById(req, res, next) : getAll(req, res, next);
 }
 
 function getAll(req, res, _) {
