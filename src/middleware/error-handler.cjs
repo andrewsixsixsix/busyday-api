@@ -1,6 +1,17 @@
+const { HttpError } = require("../common/error/index.cjs");
+
 const errorHanderMiddleware = (err, _req, res, _next) => {
   console.log(err);
-  res.status(500).json({ status: 500, message: "Internal server error" });
+
+  let status = 500;
+  let message = "Internal server error";
+
+  if (err instanceof HttpError) {
+    status = err.statusCode;
+    message = err.message;
+  }
+
+  res.status(status).json({ status, message });
 };
 
 module.exports = errorHanderMiddleware;
