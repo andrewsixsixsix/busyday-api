@@ -1,10 +1,12 @@
 INSERT INTO users (
     username,
     email,
-    name
+    name,
+    password
 )
 VALUES (
     'admin',
     'admin@busyday.com',
-    'Andrew'
+    'Andrew',
+    'admin'
 );

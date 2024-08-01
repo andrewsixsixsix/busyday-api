@@ -10,21 +10,21 @@
  * @typedef {Object} Task
  * @property {number} id
  * @property {string} title
- * @property {string|null} description
+ * @property {?string} description
  * @property {TaskStatus} status
  * @property {TaskPriority} priority
- * @property {string|null} dueDate
- * @property {string|null} createdAt
+ * @property {?string} dueDate
+ * @property {?string} createdAt
  * @property {number} userId
  */
 
 /**
  * @typedef {Object} TaskCreation
  * @property {string} title
- * @property {string|null} description
+ * @property {?string} description
  * @property {TaskStatus} status
  * @property {TaskPriority} priority
- * @property {string|null} dueDate
+ * @property {?string} dueDate
  * @property {number} userId
  */
 
@@ -32,10 +32,10 @@
  * @typedef {Object} UpdatedTask
  * @property {number} id
  * @property {string} title
- * @property {string|null} description
+ * @property {?string} description
  * @property {TaskStatus} status
  * @property {TaskPriority} priority
- * @property {string|null} dueDate
+ * @property {?string} dueDate
  */
 
 module.exports = {};
