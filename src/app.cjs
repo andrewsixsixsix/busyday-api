@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const { taskRouter } = require("./core/router/index.cjs");
+const { taskRouter, userRouter } = require("./core/router/index.cjs");
 const {
   errorHanderMiddleware,
   notFoundMiddleware,
@@ -12,6 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use("/api", taskRouter);
+app.use("/api", userRouter);
 
 app.use(errorHanderMiddleware);
 app.use(notFoundMiddleware);

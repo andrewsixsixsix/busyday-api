@@ -1,5 +1,9 @@
 const db = require("../../db.cjs");
-const { Task, TaskCreation, UpdatedTask } = require("../../typedef/index.cjs");
+const {
+  Task,
+  TaskCreation,
+  UpdatedTask,
+} = require("../../common/typedef/task.cjs");
 
 /**
  * @param {TaskCreation} task

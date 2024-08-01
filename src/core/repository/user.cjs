@@ -1,5 +1,9 @@
 const db = require("../../db.cjs");
-const { User, UserCreation, UpdatedUser } = require("../../typedef/index.cjs");
+const {
+  User,
+  UserCreation,
+  UpdatedUser,
+} = require("../../common/typedef/user.cjs");
 
 /**
  * @param {UserCreation} user
@@ -46,7 +50,7 @@ const update = (user) => {
     UPDATE
       users
     SET
-      usename = ?,
+      username = ?,
       email = ?,
       name = ?,
       avatar = ?

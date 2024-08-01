@@ -1,12 +1,12 @@
 const express = require("express");
-const taskRouter = express.Router();
+const router = express.Router();
 
 const { authMiddleware } = require("../../middleware/index.cjs");
-const taskService = require("../service/task.cjs");
+const { taskService } = require("../service/index.cjs");
 
-taskRouter.use(authMiddleware);
-taskRouter.route("/tasks").get(getAll).post(create).put(update);
-taskRouter.route("/tasks/:id([0-9]+)").get(getById).delete(deleteById);
+router.use(authMiddleware);
+router.route("/tasks").get(getAll).post(create).put(update);
+router.route("/tasks/:id([0-9]+)").get(getById).delete(deleteById);
 
 function create(req, res, _) {
   const task = req.body;
@@ -44,4 +44,4 @@ function update(req, res, _) {
   res.end();
 }
 
-module.exports = taskRouter;
+module.exports = taskRouter = router;
