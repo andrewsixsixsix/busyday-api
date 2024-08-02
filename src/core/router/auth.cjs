@@ -1,16 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-const { authMiddleware } = require("../../middleware/index.cjs");
 const { authService } = require("../service/index.cjs");
 
 router.post("/auth/login", login);
-router.post("/auth/logout", authMiddleware, logout);
+router.post("/auth/logout", logout);
 router.post("/auth/signup", signup);
 
-function login(req, res) {
+async function login(req, res) {
   const credentials = req.body;
-  const { jwt, user } = authService.login(credentials);
+  const { jwt, user } = await authService.login(credentials);
   res.set("Authorization", `Bearer ${jwt}`).json(user);
 }
 

@@ -1,4 +1,4 @@
-const db = require("../../db.cjs");
+const jwtService = require("./jwt.cjs");
 const userService = require("./user.cjs");
 const { HttpError } = require("../../common/error/index.cjs");
 const { UserCreation } = require("../../common/typedef/user.cjs");
@@ -9,9 +9,9 @@ const {
 
 /**
  * @param {LoginCredentials} credentials
- * @returns {LoginResult} JWT token and user details
+ * @returns {LoginResult} JWT and user details
  */
-const login = (credentials) => {
+const login = async (credentials) => {
   const user = userService.findByUsername(credentials.username);
 
   if (!user) {
@@ -21,10 +21,9 @@ const login = (credentials) => {
   }
 
   const { password, createdDate, ...appUser } = user;
+  const jwt = await jwtService.sign({ userId: user.id });
 
-  // TODO: generate JWT
-
-  return { jwt: "fake", user: appUser };
+  return { jwt, user: appUser };
 };
 
 const logout = () => {};

@@ -1,4 +1,4 @@
-const { AppUser, User } = require("./user.cjs");
+const { AppUser } = require("./user.cjs");
 
 /**
  * @typedef {Object} LoginCredentials
