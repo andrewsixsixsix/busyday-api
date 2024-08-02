@@ -1,33 +1,34 @@
 const { ADMIN_USER_ID } = require("../common/constants.cjs");
+const { HttpError } = require("../common/error/index.cjs");
 
-const adminUserProtectorMiddleware = (req, res, next) => {
+const adminUserProtectorMiddleware = (req, _res, next) => {
   if (!req.path.startsWith("/users")) {
     return next();
   }
 
-  let userId;
-  switch (req.method) {
-    case "PUT": {
-      userId = req.body.id;
-      break;
+  try {
+    let userId;
+    switch (req.method) {
+      case "PUT": {
+        userId = req.body.id;
+        break;
+      }
+      case "DELETE": {
+        userId = +req.path.split("/")[2];
+        break;
+      }
+      default:
+        return next();
     }
-    case "DELETE": {
-      userId = +req.path.split("/")[2];
-      break;
+
+    if (userId === ADMIN_USER_ID) {
+      throw new HttpError(400, "Admin user cannot be changed or deleted");
     }
-    default:
-      return next();
-  }
 
-  if (userId === ADMIN_USER_ID) {
-    res.status(400).json({
-      status: 400,
-      message: "Admin user cannot be changed or deleted",
-    });
-    return;
+    next();
+  } catch (err) {
+    next(err);
   }
-
-  next();
 };
 
 module.exports = adminUserProtectorMiddleware;

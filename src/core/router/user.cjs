@@ -7,10 +7,11 @@ const {
 } = require("../../middleware/index.cjs");
 const { userService } = require("../service/index.cjs");
 
-router.use(adminUserProtectorMiddleware);
-router.use(authMiddleware);
-
-router.route("/users/:id([0-9]+)?").get(getById).delete(deleteById).put(update);
+router
+  .route("/users/:id([0-9]+)?")
+  .get(authMiddleware, getById)
+  .delete(authMiddleware, adminUserProtectorMiddleware, deleteById)
+  .put(authMiddleware, adminUserProtectorMiddleware, update);
 
 function deleteById(req, res, _) {
   const userId = req.params.id;

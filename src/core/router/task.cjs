@@ -4,14 +4,12 @@ const router = express.Router();
 const { authMiddleware } = require("../../middleware/index.cjs");
 const { taskService } = require("../service/index.cjs");
 
-router.use(authMiddleware);
-
 router
   .route("/tasks/:id([0-9]+)?")
-  .get(get)
-  .post(create)
-  .put(update)
-  .delete(deleteById);
+  .get(authMiddleware, get)
+  .post(authMiddleware, create)
+  .put(authMiddleware, update)
+  .delete(authMiddleware, deleteById);
 
 function create(req, res, _) {
   const task = req.body;
